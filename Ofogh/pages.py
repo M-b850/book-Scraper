@@ -17,7 +17,10 @@ with io.open("res.txt", "r", newline=None) as fd:
         soup = BeautifulSoup(page.content, 'html.parser')
         BOOK = soup.find('h2', class_='product_title entry-title').text.strip()
         AUTHOR_FA2 = soup.find('span', class_='yith-wcbr-brands')
-        AUTHOR_FA = AUTHOR_FA2.find('a').text.strip()
+        try :
+            AUTHOR_FA = AUTHOR_FA2.find('a').text.strip()
+        except AttributeError:
+            AUTHOR_FA = ''
         author_fa.append(AUTHOR_FA)
         book.append(BOOK)
 
